@@ -1,0 +1,75 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if user owns the resource
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // Helper function to check if user is admin
+    function isAdmin() {
+      return isAuthenticated() && 
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Users collection
+    match /users/{userId} {
+      // Anyone authenticated can read user profiles
+      allow read: if isAuthenticated();
+      // Users can create/update their own profile, Admins can update any profile (for suspension)
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+      allow update: if (isAuthenticated() && request.auth.uid == userId) || isAdmin();
+      // Users cannot delete their profile, Admins can (optional, but good for cleanup)
+      allow delete: if isAdmin();
+    }
+    
+    // Items collection
+    match /items/{itemId} {
+      // Authenticated users can read all items
+      allow read: if isAuthenticated();
+      
+      // Authenticated users can create items
+      allow create: if isAuthenticated() 
+        && request.resource.data.keys().hasAll(['title', 'description', 'category', 'location', 'status', 'ownerEmail', 'ownerName', 'date'])
+        && request.resource.data.ownerEmail == request.auth.token.email;
+      
+      // Owner OR Admin can update items
+      allow update: if isAuthenticated() 
+        && (resource.data.ownerEmail == request.auth.token.email || isAdmin());
+      
+      // Owner OR Admin can delete items
+      allow delete: if isAuthenticated() 
+        && (resource.data.ownerEmail == request.auth.token.email || isAdmin());
+    }
+
+    // Announcements collection (Story #20)
+    match /announcements/{announcementId} {
+      // All authenticated users can read announcements
+      allow read: if isAuthenticated();
+      
+      // Only admins can create, update, or delete announcements
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Audit logs collection (Story #23)
+    match /audit_logs/{logId} {
+      // Only admins can read audit logs
+      allow read: if isAdmin();
+      
+      // Authenticated users can create audit logs (for logging their own actions)
+      allow create: if isAuthenticated();
+      
+      // No updates or deletes allowed (immutable log)
+      allow update: if false;
+      allow delete: if false;
+    }
+  }
+}

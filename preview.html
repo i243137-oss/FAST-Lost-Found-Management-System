@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAST Lost & Found - Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-white border-b border-gray-200 sticky top-0 z-40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+                <h1 class="text-xl sm:text-2xl font-bold text-gray-900">
+                    🔍 FAST Lost & Found
+                </h1>
+                <div class="flex items-center gap-2 sm:gap-4">
+                    <button class="p-2 rounded-lg bg-gray-100 text-gray-700 hover:opacity-80 transition">
+                        🌙
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Login Modal -->
+        <div class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-xl max-w-md w-full p-6 sm:p-8 shadow-2xl">
+                <div class="text-center mb-6">
+                    <h2 class="text-3xl font-extrabold mb-2 text-gray-900">
+                        FAST Lost & Found
+                    </h2>
+                    <p class="text-sm text-gray-600">
+                        Sign in to access the system
+                    </p>
+                </div>
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-gray-700">FAST University Email</label>
+                        <div class="relative">
+                            <input
+                                type="email"
+                                placeholder="yourname@isb.nu.edu.pk"
+                                class="w-full pl-10 pr-4 py-3 rounded-lg border bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                            />
+                        </div>
+                        <p class="text-xs mt-1 text-gray-500">
+                            Must use your FAST Islamabad email
+                        </p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-gray-700">Password</label>
+                        <div class="relative">
+                            <input
+                                type="password"
+                                placeholder="Enter your password"
+                                class="w-full pl-10 pr-4 py-3 rounded-lg border bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                            />
+                        </div>
+                        <p class="text-xs mt-1 text-gray-500">
+                            Minimum 6 characters
+                        </p>
+                    </div>
+                    <button
+                        type="submit"
+                        class="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition duration-300 font-bold shadow-lg"
+                    >
+                        Sign In
+                    </button>
+                </form>
+                <div class="mt-6 text-center">
+                    <button class="text-sm text-blue-600 hover:text-blue-700 font-medium transition">
+                        Don't have an account? Register
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Preview -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                <p class="text-yellow-800 text-sm">
+                    <strong>Note:</strong> Ye ek preview hai. Full application run karne ke liye Node.js install karein aur <code class="bg-yellow-100 px-2 py-1 rounded">npm install</code> aur <code class="bg-yellow-100 px-2 py-1 rounded">npm run dev</code> run karein.
+                </p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex flex-wrap justify-center sm:justify-start gap-3 mb-6">
+                <button class="px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold bg-blue-600 text-white shadow-md">
+                    All Items
+                </button>
+                <button class="px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold bg-white text-gray-700 hover:bg-gray-100 border border-gray-200">
+                    Lost Items
+                </button>
+                <button class="px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold bg-white text-gray-700 hover:bg-gray-100 border border-gray-200">
+                    Found Items
+                </button>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-6 mb-8">
+                <!-- Filters Sidebar -->
+                <div class="w-full lg:w-1/4">
+                    <div class="bg-white rounded-xl p-4 shadow-lg sticky top-20 border border-gray-200">
+                        <h3 class="text-lg font-bold mb-4 text-gray-900">Filters & Search</h3>
+                        <div class="relative mb-4">
+                            <input
+                                type="text"
+                                placeholder="Search titles or descriptions..."
+                                class="w-full pl-10 pr-4 py-2 rounded-lg border bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div class="mb-4">
+                            <label class="flex items-center gap-2 text-sm font-medium mb-2 text-gray-700">
+                                🏷️ Category
+                            </label>
+                            <select class="w-full px-4 py-2 rounded-lg border bg-white border-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option>All</option>
+                                <option>Electronics</option>
+                                <option>Books</option>
+                                <option>Bags</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="flex items-center gap-2 text-sm font-medium mb-2 text-gray-700">
+                                📍 Location
+                            </label>
+                            <select class="w-full px-4 py-2 rounded-lg border bg-white border-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option>All</option>
+                                <option>Library</option>
+                                <option>Cafeteria</option>
+                                <option>Gym</option>
+                            </select>
+                        </div>
+                        <button class="w-full px-4 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition flex items-center justify-center gap-2 font-bold shadow-md">
+                            ➕ New Lost/Found Post
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Items Grid -->
+                <div class="w-full lg:w-3/4">
+                    <h2 class="text-2xl font-bold mb-4 text-gray-900">
+                        All Items (4)
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Sample Item Card 1 -->
+                        <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg">
+                            <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400" alt="Backpack" class="w-full h-48 object-cover">
+                            <div class="p-4 sm:p-5">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-extrabold text-xl text-gray-900">Black Laptop Backpack</h3>
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-red-500 text-white">LOST</span>
+                                </div>
+                                <p class="text-sm mb-3 text-gray-600">Contains laptop and charger</p>
+                                <div class="space-y-2 mb-4 text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-blue-600">🏷️</span>
+                                        <span class="text-gray-700">Category: <span class="font-medium">Bags</span></span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-yellow-600">📍</span>
+                                        <span class="text-gray-700">Location: <span class="font-medium">Library</span></span>
+                                    </div>
+                                </div>
+                                <button class="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition flex items-center justify-center gap-2 font-semibold">
+                                    ✓ Mark as Claimed
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Sample Item Card 2 -->
+                        <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg">
+                            <img src="https://images.unsplash.com/photo-1592286927505-38a734ff9b8b?w=400" alt="iPhone" class="w-full h-48 object-cover">
+                            <div class="p-4 sm:p-5">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-extrabold text-xl text-gray-900">Silver iPhone 13</h3>
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-green-500 text-white">FOUND</span>
+                                </div>
+                                <p class="text-sm mb-3 text-gray-600">Blue case with stickers</p>
+                                <div class="space-y-2 mb-4 text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-blue-600">🏷️</span>
+                                        <span class="text-gray-700">Category: <span class="font-medium">Electronics</span></span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-yellow-600">📍</span>
+                                        <span class="text-gray-700">Location: <span class="font-medium">Cafeteria</span></span>
+                                    </div>
+                                </div>
+                                <button class="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition flex items-center justify-center gap-2 font-semibold">
+                                    ✓ Mark as Claimed
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Sample Item Card 3 -->
+                        <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg">
+                            <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400" alt="Water Bottle" class="w-full h-48 object-cover">
+                            <div class="p-4 sm:p-5">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-extrabold text-xl text-gray-900">Red Water Bottle</h3>
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-green-500 text-white">FOUND</span>
+                                </div>
+                                <p class="text-sm mb-3 text-gray-600">Insulated steel bottle</p>
+                                <div class="space-y-2 mb-4 text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-blue-600">🏷️</span>
+                                        <span class="text-gray-700">Category: <span class="font-medium">Personal Items</span></span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-yellow-600">📍</span>
+                                        <span class="text-gray-700">Location: <span class="font-medium">Gym</span></span>
+                                    </div>
+                                </div>
+                                <button class="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition flex items-center justify-center gap-2 font-semibold">
+                                    ✓ Mark as Claimed
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+
