@@ -174,7 +174,7 @@ export default function App() {
 
   // Fetch items from Firestore (Real-time)
   useEffect(() => {
-    if (!db) return;
+    if (!db || !isLoggedIn) return;
     const unsubscribe = onSnapshot(collection(db, "items"), (snapshot) => {
       const itemsList = snapshot.docs.map(doc => ({
         id: doc.id,
@@ -187,7 +187,7 @@ export default function App() {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [isLoggedIn]);
 
   // Fetch all users (Real-time for Admin Dashboard)
   useEffect(() => {
